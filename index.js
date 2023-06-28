@@ -9,6 +9,7 @@ const url = require("url");
 const StringDecoder = require("string_decoder").StringDecoder;
 const config = require("./config");
 const fs = require("fs");
+const handlers = require("./lib/handlers");
 
 //  the server should respond to all requests with a string
 
@@ -123,22 +124,9 @@ const unifiedServer = function (req, res) {
   });
 };
 
-// define handlers
-
-const handlers = {};
-
-// not found handler
-
-handlers.notFound = function (data, callback) {
-  callback(404);
-};
-
-handlers.ping = function (data, callback) {
-  callback(200);
-};
-
 //define a request router
 
 const router = {
   ping: handlers.ping,
+  users: handlers.users,
 };
