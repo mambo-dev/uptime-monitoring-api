@@ -10,6 +10,7 @@ const StringDecoder = require("string_decoder").StringDecoder;
 const config = require("./config");
 const fs = require("fs");
 const handlers = require("./lib/handlers");
+const helpers = require("./lib/helpers");
 
 //  the server should respond to all requests with a string
 
@@ -97,7 +98,7 @@ const unifiedServer = function (req, res) {
       queryStringObject,
       method,
       headers,
-      payload: buffer,
+      payload: helpers.parsedJsonToObject(buffer),
     };
 
     //route the request to the handler specified in the router
