@@ -7,7 +7,7 @@ const http = require("http");
 const https = require("https");
 const url = require("url");
 const StringDecoder = require("string_decoder").StringDecoder;
-const config = require("./config");
+const config = require("./lib/config");
 const fs = require("fs");
 const handlers = require("./lib/handlers");
 const helpers = require("./lib/helpers");
@@ -85,7 +85,7 @@ const unifiedServer = function (req, res) {
     buffer += decoder.end();
 
     // choose handler this request should go to  and if not found use not found handler
-
+    console.log(trimmedPath);
     const chosenHandler =
       typeof router[trimmedPath] !== "undefined"
         ? router[trimmedPath]
