@@ -112,7 +112,7 @@ const unifiedServer = function (req, res) {
 
       payload = typeof payload === "object" ? payload : {};
 
-      // convert the payload to a tring
+      // convert the payload to a string
 
       var payloadString = JSON.stringify(payload);
 
