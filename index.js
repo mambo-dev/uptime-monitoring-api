@@ -77,7 +77,6 @@ const unifiedServer = function (req, res) {
   let buffer = "";
 
   req.on("data", function (data) {
-    console.log(typeof data);
     buffer += decoder.write(data);
   });
 
@@ -85,10 +84,12 @@ const unifiedServer = function (req, res) {
     buffer += decoder.end();
 
     // choose handler this request should go to  and if not found use not found handler
-    console.log(trimmedPath);
+
     const chosenHandler =
       typeof router[trimmedPath] !== "undefined"
         ? router[trimmedPath]
+        : Object.keys(queryStringObject).length > 0
+        ? router[trimmedPath.split("?")[0]]
         : handlers.notFound;
 
     // construct data object to send to the handler
